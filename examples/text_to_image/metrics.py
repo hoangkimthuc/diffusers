@@ -27,4 +27,3 @@ def calculate_clip_score(images, prompts):
 
 sd_clip_score = calculate_clip_score(images, prompts)
 print(f"CLIP score: {sd_clip_score}")
-# CLIP score: 35.7038

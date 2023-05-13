@@ -5,18 +5,25 @@ The `train_text_to_image.py` script shows how to fine-tune stable diffusion mode
 ## Running locally with PyTorch
 ### Installing the dependencies
 
+First, clone the repo and then create a conda env from the env.yaml file and activate the env
+```bash
+git clone https://github.com/hoangkimthuc/diffusers.git
+cd diffusers/examples/text_to_image
+conda env create -f env.yaml
+conda activate stable_diffusion
+```
+
 Before running the scripts, make sure to install the library's training dependencies:
 
 **Important**
 
 To make sure you can successfully run the latest versions of the example scripts, we highly recommend **installing from source** and keeping the install up to date as we update the example scripts frequently and install some example-specific requirements. To do this, execute the following steps in a new virtual environment:
 ```bash
-git clone https://github.com/huggingface/diffusers
 cd diffusers
 pip install .
 ```
 
-Then cd in the example folder  and run
+Then cd in the diffusers/examples/text_to_image folder and run
 ```bash
 pip install -r requirements.txt
 ```
@@ -27,7 +34,7 @@ And initialize an [🤗Accelerate](https://github.com/huggingface/accelerate/) e
 accelerate config
 ```
 
-### Pokemon example
+### 1. Training with Pokemon dataset
 
 Dataset name: pokemon-blip-captions
 
@@ -56,15 +63,40 @@ With `gradient_checkpointing` and `mixed_precision` it should be possible to fin
 bash train.sh
 ```
 <!-- accelerate_snippet_end -->
+
+### 2. Inference
+
+
 Once the training is finished the model will be saved in the `output_dir` specified in the command. In this example it's `sd-pokemon-model`. To load the fine-tuned model for inference just pass that path to `StableDiffusionPipeline`
 
 
 ```python
 from diffusers import StableDiffusionPipeline
 
-model_path = "path_to_saved_model"
+model_path = "sd-pokemon-model"
 pipe = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=torch.float16)
 pipe.to("cuda")
 
 image = pipe(prompt="yoda").images[0]
 image.save("yoda-pokemon.png")
+```
+### 3. Compute metrics (CLIP score)
+CLIP score is a measure of how well the generated images match the prompts.
+
+Validation prompts to calculate the CLIP scores:
+```python
+prompts = [
+    "a photo of an astronaut riding a horse on mars",
+    "A high tech solarpunk utopia in the Amazon rainforest",
+    "A pikachu fine dining with a view to the Eiffel Tower",
+    "A mecha robot in a favela in expressionist style",
+    "an insect robot preparing a delicious meal",
+    "A small cabin on top of a snowy mountain in the style of Disney, artstation",
+]
+```
+To calculate the CLIP score for the above prompts, run:
+```bash
+python metrics.py
+```
+
+
