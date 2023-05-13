@@ -93,6 +93,7 @@ def log_validation(vae, text_encoder, tokenizer, unet, args, accelerator, weight
         images.append(image)
 
     for tracker in accelerator.trackers:
+        breakpoint()
         if tracker.name == "tensorboard":
             np_images = np.stack([np.asarray(img) for img in images])
             tracker.writer.add_images("validation", np_images, epoch, dataformats="NHWC")
