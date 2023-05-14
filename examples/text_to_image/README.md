@@ -1,6 +1,6 @@
 # Task 1: Choosing model
 
-# Stable Diffusion text-to-image fine-tuning
+# Chosen model: Stable Diffusion text-to-image fine-tuning
 
 The `train_text_to_image.py` script shows how to fine-tune stable diffusion model on your own dataset.
 
@@ -55,11 +55,10 @@ If you have already cloned the repo, then you won't need to go through these ste
 With `gradient_checkpointing` and `mixed_precision` it should be possible to fine tune the model on a single 24GB GPU. For higher `batch_size` and faster training it's better to use GPUs with >30GB memory.
 
 **___Note: Change the `resolution` to 768 if you are using the [stable-diffusion-2](https://huggingface.co/stabilityai/stable-diffusion-2) 768x768 model.___**
-<!-- accelerate_snippet_start -->
+
 ```bash
 bash train.sh
 ```
-<!-- accelerate_snippet_end -->
 
 ### Sample input/output after training
 
@@ -109,5 +108,18 @@ To calculate the CLIP score for the above prompts, run:
 python metrics.py
 ```
 
+### Link to the trained model
 
+https://drive.google.com/file/d/1xzVUO0nZn-0oaJgHOWjrYKHmGUlsoJ1g/view?usp=sharing
+
+### Modifications made to the original code
+- Add metrics and gradio_app scripts
+- Remove redundunt code
+- Add training bash script
+- Improve readme
+- Add conda env.yaml file and add more dependencies for the web app
+
+# Task 2: Using the model in a web application
+
+To create 
 

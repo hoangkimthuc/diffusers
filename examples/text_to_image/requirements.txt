@@ -6,4 +6,5 @@ ftfy
 tensorboard
 Jinja2
 torchmetrics==0.11.4
-tensorflow
+gradio
+Pillow==9.5.0
