@@ -810,6 +810,7 @@ def main():
     progress_bar.set_description("Steps")
 
     for epoch in range(first_epoch, args.num_train_epochs):
+        breakpoint()
         unet.train()
         train_loss = 0.0
         for step, batch in enumerate(train_dataloader):

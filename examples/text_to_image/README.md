@@ -1,9 +1,10 @@
+# Task 1: Choosing model
+
 # Stable Diffusion text-to-image fine-tuning
 
 The `train_text_to_image.py` script shows how to fine-tune stable diffusion model on your own dataset.
 
-## Running locally with PyTorch
-### Installing the dependencies
+### How to install the code requirements.
 
 First, clone the repo and then create a conda env from the env.yaml file and activate the env
 ```bash
@@ -34,11 +35,7 @@ And initialize an [🤗Accelerate](https://github.com/huggingface/accelerate/) e
 accelerate config
 ```
 
-### 1. Training with Pokemon dataset
-
-Dataset name: pokemon-blip-captions
-
-Dataset link: https://huggingface.co/datasets/lambdalabs/pokemon-blip-captions
+### Steps to run the training.
 
 You need to accept the model license before downloading or using the weights. In this example we'll use model version `v1-4`, so you'll need to visit [its card](https://huggingface.co/CompVis/stable-diffusion-v1-4), read the license and tick the checkbox if you agree. 
 
@@ -64,8 +61,7 @@ bash train.sh
 ```
 <!-- accelerate_snippet_end -->
 
-### 2. Inference
-
+### Sample input/output after training
 
 Once the training is finished the model will be saved in the `output_dir` specified in the command. In this example it's `sd-pokemon-model`. To load the fine-tuned model for inference just pass that path to `StableDiffusionPipeline`
 
@@ -80,7 +76,21 @@ pipe.to("cuda")
 image = pipe(prompt="yoda").images[0]
 image.save("yoda-pokemon.png")
 ```
-### 3. Compute metrics (CLIP score)
+The output with the prompt "yoda" is saved in the `yoda-pokemon.png` image file.
+
+### Name and link to the training dataset.
+
+Dataset name: pokemon-blip-captions
+
+Dataset link: https://huggingface.co/datasets/lambdalabs/pokemon-blip-captions
+
+### The number of model parameters to determine the model’s complexity.
+
+Note: CLIPTextModel (text conditioning model) and AutoencoderKL (image generating model) are frozen, only the Unet (the diffusion model) is trained.
+The number of trainable parameters in the script: 859_520_964
+To get this number, you can put a breakpoint by calling `breakpoint()` at line 813 of the `train_text_to_image.py` file and then run `train.sh`. Once the pbd session stops at that line, you can check the model's parameters by `p unet.num_parameters()`.
+
+### The model evaluation metric (CLIP score)
 CLIP score is a measure of how well the generated images match the prompts.
 
 Validation prompts to calculate the CLIP scores:
@@ -98,5 +108,6 @@ To calculate the CLIP score for the above prompts, run:
 ```bash
 python metrics.py
 ```
+
 
 
