@@ -86,7 +86,9 @@ Dataset link: https://huggingface.co/datasets/lambdalabs/pokemon-blip-captions
 ### The number of model parameters to determine the model’s complexity.
 
 Note: CLIPTextModel (text conditioning model) and AutoencoderKL (image generating model) are frozen, only the Unet (the diffusion model) is trained.
+
 The number of trainable parameters in the script: 859_520_964
+
 To get this number, you can put a breakpoint by calling `breakpoint()` at line 813 of the `train_text_to_image.py` file and then run `train.sh`. Once the pbd session stops at that line, you can check the model's parameters by `p unet.num_parameters()`.
 
 ### The model evaluation metric (CLIP score)
@@ -121,5 +123,24 @@ https://drive.google.com/file/d/1xzVUO0nZn-0oaJgHOWjrYKHmGUlsoJ1g/view?usp=shari
 
 # Task 2: Using the model in a web application
 
-To create 
+### Install the code requirements and run the web app locally
+
+Dependencies for the app is already installed in the requirements.txt.
+
+There are 2 ways to run the app with the trained model:
+
+1. Follow Task 1 to train the model. The model cache is saved in the `sd-pokemon-model` directory
+
+2. Download and decompress the zip file containing the trained model to a folder named `sd-pokemon-model` and put that folder in the root directory of the project.
+
+To run the web app locally, run
+```bash
+python gradio_app.py
+```
+There will be also a link to access the app publicly but it will only be available within 3 days.
+## A screenshot of the output.
+
+Below is the screenshot of the demo web app
+
+![alt text](https://github.com/https://github.com/hoangkimthuc/diffusers/blob/main/screenshot_webapp.png?raw=true)
 
