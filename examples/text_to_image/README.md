@@ -76,7 +76,7 @@ image = pipe(prompt="yoda").images[0]
 image.save("yoda-pokemon.png")
 ```
 The output with the prompt "yoda" is saved in the `yoda-pokemon.png` image file.
-![alt text](https://github.com/https://github.com/hoangkimthuc/diffusers/examples/text_to_image/blob/main/yoda-pokemon.png?raw=true)
+![alt text](https://github.com/hoangkimthuc/diffusers/blob/main/examples/text_to_image/yoda-pokemon.png?raw=true)
 
 ### Name and link to the training dataset.
 
@@ -143,5 +143,5 @@ There will be also a link to access the app publicly but it will only be availab
 
 Below is the screenshot of the demo web app
 
-![alt text](https://github.com/https://github.com/hoangkimthuc/diffusers/examples/text_to_image/blob/main/screenshot_webapp.png?raw=true)
+![alt text](https://github.com/hoangkimthuc/diffusers/blob/main/examples/text_to_image/yoda-pokemon.png/screenshot_webapp.png?raw=true)
 
