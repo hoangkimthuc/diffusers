@@ -163,7 +163,7 @@ To do this, Stable Diffusion has different parts that help it to create these im
 2. Stable Diffusion then uses what's called a Diffusion Process to add noise (randomness) to these numbers to create an image that is similar to what you described. After that, the Decoder Network takes this noise-filled image and makes it clearer and more detailed, like a computer sharpening a blurry photo.
 
 Below is an illustration of the diffusion process forward and backward pass:
-
+![alt text](https://github.com/hoangkimthuc/diffusers/blob/main/examples/text_to_image/diffusion_illustration.png?raw=true)
 
 3. Finally, the Discriminator Network looks at this final image and decides if it looks like what you described or if it's not quite right. This helps the machine learn how to make better images based on your descriptions in the future.
 
