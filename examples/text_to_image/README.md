@@ -1,6 +1,6 @@
 # Task 1: Choosing model
 
-# Chosen model: Stable Diffusion text-to-image fine-tuning
+## Chosen model: Stable Diffusion text-to-image v.1-4
 
 The `train_text_to_image.py` script shows how to fine-tune stable diffusion model on your own dataset.
 
@@ -144,4 +144,7 @@ There will be also a link to access the app publicly but it will only be availab
 Below is the screenshot of the demo web app
 
 ![alt text](https://github.com/hoangkimthuc/diffusers/blob/main/examples/text_to_image/screenshot_webapp.png?raw=true)
+
+# Task 3: Demonstration and discussion
+
 
